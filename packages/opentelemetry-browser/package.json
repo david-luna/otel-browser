@@ -1,0 +1,48 @@
+{
+  "name": "opentelemetry-browser",
+  "version": "1.0.0",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "keywords": [
+    "opentelemetry",
+    "telemetry",
+    "apm",
+    "tracing",
+    "metrics",
+    "logs",
+    "rum",
+    "browser"
+  ],
+  "files":["dist"],
+  "main":"./dist/otel-browser.umd.js",
+  "module":"./dist/otel-browser.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/otel-browser.es.js",
+      "require": "./dist/otel-browser.umd.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist",
+    "build": "vite build"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/context-zone": "^2.0.0",
+    "@opentelemetry/instrumentation": "^0.200.0",
+    "@opentelemetry/instrumentation-document-load": "^0.45.0",
+    "@opentelemetry/sdk-trace-web": "^2.0.0"
+  },
+  "devDependencies": {
+    "@parcel/bundler-library": "^2.14.4",
+    "@parcel/reporter-bundle-analyzer": "^2.14.4",
+    "vite": "^6.3.4"
+  }
+}
