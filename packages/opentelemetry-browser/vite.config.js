@@ -7,6 +7,6 @@ export default defineConfig({
             entry: path.resolve(__dirname, 'lib/main.js'),
             name: 'otel-browser',
             fileName: (format) => `otel-browser.${format}.js`
-        }
+        },
     }
 });
