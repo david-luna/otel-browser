@@ -1,12 +1,17 @@
-import * as path from 'path';
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite';
+
+// @ts-ignore
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
     build: {
         lib: {
-            entry: path.resolve(__dirname, 'lib/main.js'),
+            entry: resolve(__dirname, 'lib/main.js'),
             name: 'otel-browser',
             fileName: (format) => `otel-browser.${format}.js`
         },
+        sourcemap: true,
     }
 });

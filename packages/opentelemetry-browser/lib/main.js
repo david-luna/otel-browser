@@ -6,9 +6,11 @@ import { registerInstrumentations } from '@opentelemetry/instrumentation';
 import { DocumentLoadInstrumentation } from '@opentelemetry/instrumentation-document-load';
 
 
-// TODO: this should work as if it was an SDK for web. but for now we're going to
-// lock some configs to make sure we're not bundling packages that won't be used
+// TODO
+// The web EDOT should have all the necessary components to instrument the app
+// and get rid as much as it can from other optional things. 
 // - should configure for at least the 3 signals (logs, metrics & traces)
+// - should have some locked configs to help tree shaking the code. (eg. the exporter protocol)
 
 const contextManager = new ZoneContextManager();
 
