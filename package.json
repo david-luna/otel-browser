@@ -4,12 +4,13 @@
   "description": "",
   "license": "Apache-2.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "clean-all": "set -e; ./scripts/oneach.sh npm run --if-present clean",
-    "ci-all": "./scripts/oneach.sh npm ci",
-    "compile-all": "./scripts/oneach.sh npm run --if-present compile",
-    "clean": "rm -rf node_modules build",
-    "oneach": "./scripts/oneach.sh"
+    "clean": "npm run clean --if-present -workspaces",
+    "lint": "npm run lint --if-present -workspaces",
+    "build": "npm run build --if-present -workspaces"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",

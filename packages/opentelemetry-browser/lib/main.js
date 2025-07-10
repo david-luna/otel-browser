@@ -3,8 +3,10 @@ import { parseKeyPairsIntoRecord, diagLogLevelFromString } from '@opentelemetry/
 import { ZoneContextManager } from '@opentelemetry/context-zone';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
-import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
 import { DocumentLoadInstrumentation } from '@opentelemetry/instrumentation-document-load';
+import { FetchInstrumentation } from '@opentelemetry/instrumentation-fetch';
+import { LongTaskInstrumentation } from '@opentelemetry/instrumentation-long-task';
+import { UserInteractionInstrumentation } from '@opentelemetry/instrumentation-user-interaction'
 import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xml-http-request';
 import { BatchSpanProcessor } from '@opentelemetry/sdk-trace-base';
 import { WebTracerProvider } from '@opentelemetry/sdk-trace-web';
@@ -18,7 +20,7 @@ import { resourceFromAttributes, defaultResource } from '@opentelemetry/resource
  * @property {string} [serviceName]
  * // sampler
  * @property {string} [tracesSampler]    // enum?
- * @property {string} [tracesSamplerArg] // tpyer depends on tracesSample value
+ * @property {string} [tracesSamplerArg] // type depends on tracesSample value
  * // batch span processor
  * @property {number} [bspScheduleDelay]
  * @property {number} [bspexportTimeout]
@@ -105,6 +107,8 @@ function startSdk(cfg = {}) {
         instrumentations: [
             new DocumentLoadInstrumentation(),
             new FetchInstrumentation(),
+            new LongTaskInstrumentation(),
+            new UserInteractionInstrumentation(),
             new XMLHttpRequestInstrumentation(),
         ],
     });
