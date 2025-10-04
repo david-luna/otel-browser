@@ -10,20 +10,23 @@ module.exports = merge(common, {
     mode: "production",
     devtool: "source-map",
     plugins: [
+        // @ts-ignore
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css",
         }),
-		new CopyPlugin({
-			patterns: [
-			  { from: "./node_modules/todomvc-common/base.js", to: "base.js" },
-			],
-		}),
+        // @ts-ignore
+        new CopyPlugin({
+            patterns: [
+                { from: "./node_modules/todomvc-common/base.js", to: "base.js" },
+            ],
+        }),
     ],
     module: {
         rules: [
             {
                 test: /\.css$/,
+                // @ts-ignore
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
         ],

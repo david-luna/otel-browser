@@ -1,5 +1,5 @@
 // Usage:
-//  node --import @otiny/server index.js
+//  node --import @elastic/opentelemetry-node index.js
 //  curl -i http://127.0.0.1:3000/todos
 //  curl -i http://127.0.0.1:3000/todos -X POST -d '{ "task":"my-task","date": 12345}' -H content-type:application/json
 
@@ -33,10 +33,14 @@ app.use(bodyParser.json({strict: true}));
 app.use(cors());
 
 // Handle routes
+
+// List all todos
 app.get('/todos', (req, res) => {
   res.status(200).send(todos);
   res.end();
 });
+
+// Create todo
 app.post('/todos', (req, res) => {
   const errs = validateTodo(req.body);
   if (errs.length > 0) {
@@ -54,6 +58,8 @@ app.post('/todos', (req, res) => {
   res.status(200).send({id});
   res.end();
 });
+
+// Update existing todo
 app.put('/todos/:todoId', (req, res) => {
   const {todoId} = req.params
   const todo = todos.find(t => t.id === todoId);
@@ -81,6 +87,8 @@ app.put('/todos/:todoId', (req, res) => {
   res.status(200).send({});
   res.end();
 });
+
+// Delete existing todo
 app.delete('/todos/:todoId', (req, res) => {
   const {todoId} = req.params
   const todoIndex = todos.findIndex(t => t.id === todoId);

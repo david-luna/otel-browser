@@ -4,16 +4,9 @@
   "description": "",
   "license": "Apache-2.0",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "clean": "npm run clean --if-present -workspaces",
-    "lint": "npm run lint --if-present -workspaces",
-    "build": "npm run build --if-present -workspaces"
   },
   "devDependencies": {
-    "@types/node": "^22.14.1",
     "typescript": "5.0.4"
   }
 }
