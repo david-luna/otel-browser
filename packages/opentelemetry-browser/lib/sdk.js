@@ -35,7 +35,7 @@ import { createLogger } from './logger.js';
  * @param {BrowserSdkConfiguration} [cfg]
  * @returns {{ shutdown: () => Promise<void> }}
  */
-export function initSdk(cfg = {}) {
+export function createSdk(cfg = {}) {
     diag.setLogger(createLogger({ logLevel: cfg.logLevel, fields: { name: 'elastic-otel-browser' }}));
     diag.debug(`SDK intialization`, cfg);
 

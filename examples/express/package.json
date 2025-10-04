@@ -1,0 +1,26 @@
+{
+  "name": "@otiny/examples-express",
+  "version": "1.0.0",
+  "description": "A simple express server instrumented by @otiny/server",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start:application": "OTEL_NODE_ENABLED_INSTRUMENTATIONS=http,express OTEL_NODE_RESOURCE_DETECTORS=host,os,container,bogus node --import @otiny/server index.js",
+    "start:collector": "npx @elastic/mockotlpserver -o trace-summary"
+  },
+  "dependencies": {
+    "@opentelemetry/instrumentation-express": "^0.54.0",
+    "@opentelemetry/instrumentation-http": "^0.205.0",
+    "@opentelemetry/resources": "^2.1.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@elastic/mockotlpserver": "^0.8.0",
+    "@types/express": "^5.0.3"
+  }
+}
