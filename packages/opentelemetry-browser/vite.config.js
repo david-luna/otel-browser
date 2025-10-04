@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
     build: {
         lib: {
-            entry: resolve(__dirname, 'lib/main.js'),
+            entry: resolve(__dirname, 'lib/bundle.js'),
             formats: ['umd'],
             name: 'otel-browser',
             fileName: (format) => `otel-browser.${format}.js`

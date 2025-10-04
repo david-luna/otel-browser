@@ -19,14 +19,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/otel-browser.umd.js",
-  "module": "./dist/otel-browser.es.js",
-  "exports": {
-    ".": {
-      "import": "./dist/otel-browser.es.js",
-      "require": "./dist/otel-browser.umd.js"
-    }
-  },
+  "main": "./lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist",
@@ -46,9 +39,7 @@
     "@opentelemetry/instrumentation-user-interaction": "^0.45.0",
     "@opentelemetry/instrumentation-xml-http-request": "^0.200.0",
     "@opentelemetry/sdk-trace-base": "^2.0.0",
-    "@opentelemetry/sdk-trace-web": "^2.0.0",
-    "i": "^0.3.7",
-    "npm": "^11.3.0"
+    "@opentelemetry/sdk-trace-web": "^2.0.0"
   },
   "devDependencies": {
     "@parcel/bundler-library": "^2.14.4",
