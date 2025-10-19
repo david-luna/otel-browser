@@ -7,15 +7,15 @@ import {
 } from '@opentelemetry/sdk-trace-base';
 
 /**
- * @param {import('./sdk').BrowserSdkConfiguration} cfg
+ * @param {import('./sdk').BrowserSdkConfiguration} [cfg]
  * @returns {import('@opentelemetry/sdk-trace-base').SpanProcessor[]}
  */
 export function getSpanProcessors(cfg) {
-    const tracesEndpoint = cfg.otlpTracesEndpoint ?? cfg.otlpEndpoint ?? 'http://localhost:4318/v1/traces';
+    const tracesEndpoint = cfg && (cfg.otlpTracesEndpoint ?? cfg.otlpEndpoint);
     const spanProcessors = [
         new BatchSpanProcessor(new OTLPTraceExporter({
-            headers: cfg.exportHeaders || {},
-            url: tracesEndpoint,
+            headers: (cfg && cfg.exportHeaders) || {},
+            url: tracesEndpoint || 'http://localhost:4318/v1/traces',
         })),
     ];
     // TODO: add option for console span exporter?
@@ -32,7 +32,7 @@ export function getSpanProcessors(cfg) {
  * @property {any} arg
  */
 /**
- * 
+ * TODO: return composite sampler
  * @param {SamplerConfig | undefined} cfg
  * @returns {import('@opentelemetry/sdk-trace-base').Sampler}
  */

@@ -10,6 +10,7 @@ import { createLogger } from './logger.js';
 
 /**
  * @typedef {Object} BrowserSdkConfiguration
+ * @property {boolean} [disabled]
  * @property {string} [serviceName]
  * @property {string} [serviceVersion]
  * @property {string} [logLevel] // default from the env var spec
@@ -35,9 +36,12 @@ import { createLogger } from './logger.js';
  * @param {BrowserSdkConfiguration} [cfg]
  * @returns {{ shutdown: () => Promise<void> }}
  */
-export function createSdk(cfg = {}) {
+export function startBrowserSdk(cfg = {}) {
     diag.setLogger(createLogger({ logLevel: cfg.logLevel, fields: { name: 'elastic-otel-browser' }}));
     diag.debug(`SDK intialization`, cfg);
+
+    // Context
+    const contextManager = cfg.contextManager || getContextManager();
 
     // Resource
     /** @type {import('@opentelemetry/resources').DetectedResourceAttributes} */
@@ -49,8 +53,7 @@ export function createSdk(cfg = {}) {
         serviceResource['service.version'] = cfg.serviceVersion;
     }
     
-    const resource = defaultResource()
-        .merge(getResource(cfg.resourceAttributes || {}))
+    const resource = getResource(cfg.resourceAttributes || {})
         .merge(resourceFromAttributes(serviceResource))
         .merge(resourceFromAttributes({
             'telemetry.distro.name': 'elastic',
@@ -58,22 +61,20 @@ export function createSdk(cfg = {}) {
             'telemetry.distro.version': '0.1.0',
         }));
 
-    // Context
-    const contextManager = cfg.contextManager || getContextManager();
-
     // Trace signal
     const sampler = cfg.sampler || getSampler(cfg.samplerConfig);
     const spanProcessors = cfg.spanProcessors || getSpanProcessors(cfg);
     const tracerProvider = new WebTracerProvider({ resource, sampler, spanProcessors });
+    // TODO: WebTracerProvider comes with a composite propagator [W3C, Baggage].
+    // Should we allow users to pass their own propagator?
     tracerProvider.register({ contextManager });
 
     // Instrumentations
     // TODO:
     // - add some smart defaults on config?
-    //  add other options in that match classic RUM agent?
-    const instrumentations = cfg.instrumentations || getInstrumentations({});
+    // - add other options in that match classic RUM agent?
+    const instrumentations = cfg.instrumentations || getInstrumentations();
     registerInstrumentations({ instrumentations });
-
 
     return {
         shutdown: async () => {

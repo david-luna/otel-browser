@@ -9,9 +9,9 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve(__dirname, 'lib/bundle.js'),
-            formats: ['umd'],
+            formats: ['umd', 'es'],
             name: 'otel-browser',
-            fileName: (format) => `otel-browser.${format}.js`
+            fileName: (format) => `otel-browser-bundle.${format}.js`
         },
         sourcemap: true,
     }

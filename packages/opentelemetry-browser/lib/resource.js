@@ -25,11 +25,10 @@ export function getResource(attribs) {
 }
 
 /**
- * 
  * @param {number} screenWidth 
  * @returns {'small' | 'medium' | 'large' | 'unknown'}
  */
-export const computeScreenSize = (screenWidth) => {
+function computeScreenSize (screenWidth) {
     if (screenWidth <= 768) return 'small';
     else if (screenWidth > 768 && screenWidth <= 1024) return 'medium';
     else if (screenWidth > 1024) return 'large';

@@ -15,17 +15,16 @@ import { XMLHttpRequestInstrumentation } from '@opentelemetry/instrumentation-xm
  */
 
 
-// TODO: check how to pass config
 /**
- * @param {Partial<InstrumentationConfigs>} cfg
+ * @param {Partial<InstrumentationConfigs>} [cfg]
  * @returns {import('@opentelemetry/instrumentation').Instrumentation[]}
  */
 export function getInstrumentations(cfg) {
     return [
-        new DocumentLoadInstrumentation(cfg['@opentelemetry/instrumentation-document-load']),
-        new FetchInstrumentation(cfg['@opentelemetry/instrumentation-fetch']),
-        new LongTaskInstrumentation(cfg['@opentelemetry/instrumentation-long-task']),
-        new UserInteractionInstrumentation(cfg['@opentelemetry/instrumentation-user-interaction']),
-        new XMLHttpRequestInstrumentation(cfg['@opentelemetry/instrumentation-xml-http-request']),
+        new DocumentLoadInstrumentation(cfg && cfg['@opentelemetry/instrumentation-document-load']),
+        new FetchInstrumentation(cfg && cfg['@opentelemetry/instrumentation-fetch']),
+        new LongTaskInstrumentation(cfg && cfg['@opentelemetry/instrumentation-long-task']),
+        new UserInteractionInstrumentation(cfg && cfg['@opentelemetry/instrumentation-user-interaction']),
+        new XMLHttpRequestInstrumentation(cfg && cfg['@opentelemetry/instrumentation-xml-http-request']),
     ];
 }
