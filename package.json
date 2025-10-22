@@ -5,8 +5,12 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
+    "ci-all": "node ./scripts/oneach.mjs npm ci"
   },
   "devDependencies": {
     "typescript": "5.0.4"
+  },
+  "dependencies": {
+    "@types/node": "^24.9.1"
   }
 }
