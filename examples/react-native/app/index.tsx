@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import List from '@/components/list';
+import TodoList from '@/components/TodoList';
 
 export default function Index() {
   return (
@@ -8,7 +8,7 @@ export default function Index() {
         flex: 1,
       }}
     >
-      <List></List>
+      <TodoList></TodoList>
     </View>
   );
 }
