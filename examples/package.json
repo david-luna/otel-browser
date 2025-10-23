@@ -1,0 +1,13 @@
+{
+  "name": "elastic-otel-node-examples",
+  "license": "Apache-2.0",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start:server": "cd server && npm run start:server",
+    "start:collector": "cd server && npm run start:collector",
+    "start:react-native:android": "cd react-native && npm run android",
+    "start:react-native:ios": "cd react-native && npm run ios",
+    "start:react-web": "cd react-web && npm run dev"
+  }
+}

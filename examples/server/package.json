@@ -8,7 +8,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start:application": "node --import @elastic/opentelemetry-node index.js",
+    "start:server": "node --import @elastic/opentelemetry-node index.js",
     "start:collector": "npx @elastic/mockotlpserver"
   },
   "dependencies": {

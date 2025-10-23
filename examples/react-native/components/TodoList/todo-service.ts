@@ -1,4 +1,5 @@
-const API_ENDPOINT = 'http://localhost:3000';
+// const API_ENDPOINT = 'http://localhost:3000';
+const API_ENDPOINT = 'http://10.0.2.2:3000';
 const defaultHeaders = {
   "Content-Type": "application/json",
 }
