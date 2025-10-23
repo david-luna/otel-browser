@@ -1,5 +1,6 @@
-// const API_ENDPOINT = 'http://localhost:3000';
-const API_ENDPOINT = 'http://10.0.2.2:3000';
+import {Platform} from 'react-native';
+
+const API_ENDPOINT = Platform.OS === 'ios' ? 'http://localhost:3000' : 'http://10.0.2.2:3000';
 const defaultHeaders = {
   "Content-Type": "application/json",
 }
