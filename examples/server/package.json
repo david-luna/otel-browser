@@ -8,8 +8,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start:server": "node --import @elastic/opentelemetry-node index.js",
-    "start:collector": "npx @elastic/mockotlpserver"
+    "start:server": "OTEL_EXPORTER_OTLP_ENDPOINT=http://127.0.0.1:4318 node --import @elastic/opentelemetry-node index.js",
+    "start:collector": "npx @elastic/mockotlpserver -o trace-sumary --hostname 127.0.0.1 --ui"
   },
   "dependencies": {
     "@elastic/opentelemetry-node": "^1.4.0",
